@@ -114,10 +114,10 @@ module.exports = grammar({
     )),
 
     // Break statement
-    break_statement: $ => 'break',
+    break_statement: $ => prec.left('break'),
 
     // Continue statement
-    continue_statement: $ => 'continue',
+    continue_statement: $ => prec.left('continue'),
 
     // For statement
     for_statement: $ => seq(
