@@ -27,11 +27,6 @@
 ; Function definitions
 (function_expression) @function
 
-; Method calls on member expressions - these should be colored as functions, not properties
-(call_expression
-  function: (member_expression
-    property: (identifier) @function))
-
 ; Built-in function calls
 (call_expression
   function: (identifier) @function
@@ -45,9 +40,14 @@
 (parameter_list
   (identifier) @variable.parameter)
 
-; Property access (NOT function calls)
+; Property access - placed BEFORE method calls so method calls can override
 (member_expression
   property: (identifier) @property)
+
+; Method calls on member expressions - MUST come after property access to override
+(call_expression
+  function: (member_expression
+    property: (identifier) @function))
 
 ; Variables in member expression objects
 (member_expression
@@ -78,6 +78,10 @@
 
 ; Variables as arguments to function calls
 (argument_list
+  (identifier) @variable)
+
+; Variables in return statements (direct identifiers)
+(return_statement
   (identifier) @variable)
 
 ; Operators

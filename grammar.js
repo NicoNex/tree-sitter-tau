@@ -108,7 +108,7 @@ module.exports = grammar({
     )),
 
     // Return statement
-    return_statement: $ => prec.left(seq(
+    return_statement: $ => prec.right(seq(
       'return',
       optional($._expression),
     )),
