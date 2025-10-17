@@ -52,10 +52,16 @@ module.exports = grammar({
     identifier: $ => /[a-zA-Z_][a-zA-Z0-9_]*/,
 
     number: $ => {
+      const hex = /0[xX][0-9a-fA-F]+/;
+      const binary = /0[bB][01]+/;
+      const octal = /0[oO][0-7]+/;
       const decimal = /\d+/;
       const float = /\d+\.\d+/;
       const exponent = /[eE][+-]?\d+/;
       return token(choice(
+        hex,
+        binary,
+        octal,
         seq(float, optional(exponent)),
         seq(decimal, exponent),
         decimal,

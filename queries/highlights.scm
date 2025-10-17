@@ -10,10 +10,6 @@
   "return"
 ] @keyword
 
-; Built-in functions
-((identifier) @function.builtin
-  (#match? @function.builtin "^(len|slice|append|new|type|error|failed|import|string|bytes|int|float|bool|keys|println|print)$"))
-
 ; Boolean literals
 (boolean) @constant.builtin.boolean
 
@@ -29,13 +25,19 @@
 ; Function definitions
 (function_expression) @function
 
-; Function calls
+; Built-in function calls (higher priority)
 (call_expression
-  function: (identifier) @function.call)
+  function: (identifier) @function.builtin
+  (#match? @function.builtin "^(len|println|print|input|string|error|type|int|float|exit|append|new|failed|plugin|pipe|send|recv|close|hex|oct|bin|slice|keys|delete|bytes)$"))
 
+; Method calls on member expressions
 (call_expression
   function: (member_expression
     property: (identifier) @function.method))
+
+; Regular function calls
+(call_expression
+  function: (identifier) @function.call)
 
 ; Parameters
 (parameter_list
