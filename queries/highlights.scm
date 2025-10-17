@@ -25,7 +25,7 @@
 ; Function definitions
 (function_expression) @function
 
-; Built-in function calls (higher priority)
+; Built-in function calls - use @function.builtin for special highlighting
 (call_expression
   function: (identifier) @function.builtin
   (#match? @function.builtin "^(len|println|print|input|string|error|type|int|float|exit|append|new|failed|plugin|pipe|send|recv|close|hex|oct|bin|slice|keys|delete|bytes)$"))
@@ -35,9 +35,9 @@
   function: (member_expression
     property: (identifier) @function.method))
 
-; Regular function calls
+; Regular function calls - highlight the function name
 (call_expression
-  function: (identifier) @function.call)
+  function: (identifier) @function)
 
 ; Parameters
 (parameter_list
@@ -84,5 +84,5 @@
 (member_expression
   property: (identifier) @property)
 
-; Variables
+; Variables (lower priority - catch all remaining identifiers)
 (identifier) @variable
