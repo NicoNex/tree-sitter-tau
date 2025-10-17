@@ -43,6 +43,10 @@
 (parameter_list
   (identifier) @variable.parameter)
 
+; Property access
+(member_expression
+  property: (identifier) @property)
+
 ; Operators
 [
   "="
@@ -79,10 +83,3 @@
   ":"
   ";"
 ] @punctuation.delimiter
-
-; Property access
-(member_expression
-  property: (identifier) @property)
-
-; Variables (lower priority - catch all remaining identifiers)
-(identifier) @variable
