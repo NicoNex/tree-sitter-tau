@@ -47,6 +47,37 @@
 (member_expression
   property: (identifier) @property)
 
+; Variables in member expression objects
+(member_expression
+  object: (identifier) @variable)
+
+; Variables in index expressions
+(index_expression
+  object: (identifier) @variable)
+
+; Variables as index
+(index_expression
+  index: (identifier) @variable)
+
+; Left side of assignments
+(assignment
+  left: (identifier) @variable)
+
+; Right side of assignments (variables being read)
+(assignment
+  right: (identifier) @variable)
+
+; Variables in binary expressions
+(binary_expression
+  left: (identifier) @variable)
+
+(binary_expression
+  right: (identifier) @variable)
+
+; Variables as arguments to function calls
+(argument_list
+  (identifier) @variable)
+
 ; Operators
 [
   "="
