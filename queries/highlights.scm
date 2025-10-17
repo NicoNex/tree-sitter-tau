@@ -8,6 +8,8 @@
   "else"
   "for"
   "return"
+  "break"
+  "continue"
 ] @keyword
 
 ; Boolean literals
@@ -25,15 +27,15 @@
 ; Function definitions
 (function_expression) @function
 
-; Built-in function calls - use @function.builtin for special highlighting
-(call_expression
-  function: (identifier) @function.builtin
-  (#match? @function.builtin "^(len|println|print|input|string|error|type|int|float|exit|append|new|failed|plugin|pipe|send|recv|close|hex|oct|bin|slice|keys|delete|bytes)$"))
-
-; Method calls on member expressions
+; Method calls on member expressions - these should be colored as functions, not properties
 (call_expression
   function: (member_expression
-    property: (identifier) @function.method))
+    property: (identifier) @function))
+
+; Built-in function calls
+(call_expression
+  function: (identifier) @function
+  (#match? @function "^(len|println|print|input|string|error|type|int|float|exit|append|new|failed|plugin|pipe|send|recv|close|hex|oct|bin|slice|keys|delete|bytes)$"))
 
 ; Regular function calls - highlight the function name
 (call_expression
@@ -43,7 +45,7 @@
 (parameter_list
   (identifier) @variable.parameter)
 
-; Property access
+; Property access (NOT function calls)
 (member_expression
   property: (identifier) @property)
 

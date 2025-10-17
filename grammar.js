@@ -17,6 +17,8 @@ module.exports = grammar({
       $.expression_statement,
       $.assignment,
       $.return_statement,
+      $.break_statement,
+      $.continue_statement,
       $.for_statement,
       $.if_statement,
       $.comment,
@@ -110,6 +112,12 @@ module.exports = grammar({
       'return',
       optional($._expression),
     )),
+
+    // Break statement
+    break_statement: $ => 'break',
+
+    // Continue statement
+    continue_statement: $ => 'continue',
 
     // For statement
     for_statement: $ => seq(
