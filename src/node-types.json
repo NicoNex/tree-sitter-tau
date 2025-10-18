@@ -1559,6 +1559,10 @@
     "named": false
   },
   {
+    "type": "`",
+    "named": false
+  },
+  {
     "type": "break",
     "named": false
   },
