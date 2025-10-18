@@ -10,6 +10,7 @@
   "return"
   "break"
   "continue"
+  "tau"
 ] @keyword
 
 ; Boolean literals
