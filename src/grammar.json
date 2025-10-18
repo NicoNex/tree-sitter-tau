@@ -41,6 +41,10 @@
         },
         {
           "type": "SYMBOL",
+          "name": "tau_statement"
+        },
+        {
+          "type": "SYMBOL",
           "name": "comment"
         }
       ]
@@ -642,6 +646,23 @@
                 "type": "BLANK"
               }
             ]
+          }
+        ]
+      }
+    },
+    "tau_statement": {
+      "type": "PREC_RIGHT",
+      "value": 0,
+      "content": {
+        "type": "SEQ",
+        "members": [
+          {
+            "type": "STRING",
+            "value": "tau"
+          },
+          {
+            "type": "SYMBOL",
+            "name": "_expression"
           }
         ]
       }

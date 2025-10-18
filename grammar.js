@@ -21,6 +21,7 @@ module.exports = grammar({
       $.continue_statement,
       $.for_statement,
       $.if_statement,
+      $.tau_statement,
       $.comment,
     ),
 
@@ -150,6 +151,12 @@ module.exports = grammar({
       $._expression,
       $.block,
       optional(seq('else', choice($.if_statement, $.block))),
+    )),
+
+    // Tau statement (concurrent execution)
+    tau_statement: $ => prec.right(seq(
+      'tau',
+      $._expression,
     )),
 
     // If expression
