@@ -2683,6 +2683,10 @@
           "named": true
         },
         {
+          "type": "escaped_brace",
+          "named": true
+        },
+        {
           "type": "interpolation",
           "named": true
         }
@@ -3246,6 +3250,10 @@
   },
   {
     "type": "escape_sequence",
+    "named": true
+  },
+  {
+    "type": "escaped_brace",
     "named": true
   },
   {

@@ -104,8 +104,9 @@ module.exports = grammar({
       '"',
       repeat(choice(
         $.escape_sequence,
+        $.escaped_brace,
         $.interpolation,
-        token.immediate(prec(1, /[^"\\{]+/)),
+        token.immediate(prec(1, /[^"\\{}]+/)),
       )),
       '"',
     ),
@@ -114,6 +115,9 @@ module.exports = grammar({
     raw_string: $ => seq('`', repeat(token.immediate(/[^`]+/)), '`'),
 
     escape_sequence: $ => token.immediate(seq('\\', /./)),
+
+    // A brace written twice stands for itself, the way \{ does.
+    escaped_brace: $ => token.immediate(prec(2, choice('{{', '}}'))),
 
     // A string inside an interpolation, where the quotes around it belong to
     // the string it sits in and are written escaped:

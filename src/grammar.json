@@ -304,6 +304,10 @@
               },
               {
                 "type": "SYMBOL",
+                "name": "escaped_brace"
+              },
+              {
+                "type": "SYMBOL",
                 "name": "interpolation"
               },
               {
@@ -313,7 +317,7 @@
                   "value": 1,
                   "content": {
                     "type": "PATTERN",
-                    "value": "[^\"\\\\{]+"
+                    "value": "[^\"\\\\{}]+"
                   }
                 }
               }
@@ -363,6 +367,26 @@
             "value": "."
           }
         ]
+      }
+    },
+    "escaped_brace": {
+      "type": "IMMEDIATE_TOKEN",
+      "content": {
+        "type": "PREC",
+        "value": 2,
+        "content": {
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "STRING",
+              "value": "{{"
+            },
+            {
+              "type": "STRING",
+              "value": "}}"
+            }
+          ]
+        }
       }
     },
     "escaped_string": {
