@@ -1,6 +1,6 @@
 [
   {
-    "type": "argument_list",
+    "type": "arguments",
     "named": true,
     "fields": {},
     "children": {
@@ -8,7 +8,7 @@
       "required": true,
       "types": [
         {
-          "type": "array",
+          "type": "assignment",
           "named": true
         },
         {
@@ -20,11 +20,31 @@
           "named": true
         },
         {
-          "type": "call_expression",
+          "type": "break",
           "named": true
         },
         {
-          "type": "function_expression",
+          "type": "call",
+          "named": true
+        },
+        {
+          "type": "continue",
+          "named": true
+        },
+        {
+          "type": "escaped_string",
+          "named": true
+        },
+        {
+          "type": "float",
+          "named": true
+        },
+        {
+          "type": "for",
+          "named": true
+        },
+        {
+          "type": "function",
           "named": true
         },
         {
@@ -32,11 +52,23 @@
           "named": true
         },
         {
-          "type": "if_expression",
+          "type": "if",
           "named": true
         },
         {
-          "type": "index_expression",
+          "type": "import",
+          "named": true
+        },
+        {
+          "type": "index",
+          "named": true
+        },
+        {
+          "type": "integer",
+          "named": true
+        },
+        {
+          "type": "list",
           "named": true
         },
         {
@@ -44,7 +76,7 @@
           "named": true
         },
         {
-          "type": "member_expression",
+          "type": "member",
           "named": true
         },
         {
@@ -52,11 +84,15 @@
           "named": true
         },
         {
-          "type": "number",
+          "type": "parenthesized_expression",
           "named": true
         },
         {
-          "type": "parenthesized_expression",
+          "type": "raw_string",
+          "named": true
+        },
+        {
+          "type": "return",
           "named": true
         },
         {
@@ -64,22 +100,15 @@
           "named": true
         },
         {
+          "type": "tau_call",
+          "named": true
+        },
+        {
           "type": "unary_expression",
           "named": true
-        }
-      ]
-    }
-  },
-  {
-    "type": "array",
-    "named": true,
-    "fields": {},
-    "children": {
-      "multiple": false,
-      "required": false,
-      "types": [
+        },
         {
-          "type": "argument_list",
+          "type": "update_expression",
           "named": true
         }
       ]
@@ -94,25 +123,7 @@
         "required": true,
         "types": [
           {
-            "type": "identifier",
-            "named": true
-          },
-          {
-            "type": "index_expression",
-            "named": true
-          },
-          {
-            "type": "member_expression",
-            "named": true
-          }
-        ]
-      },
-      "right": {
-        "multiple": false,
-        "required": true,
-        "types": [
-          {
-            "type": "array",
+            "type": "assignment",
             "named": true
           },
           {
@@ -124,11 +135,31 @@
             "named": true
           },
           {
-            "type": "call_expression",
+            "type": "break",
             "named": true
           },
           {
-            "type": "function_expression",
+            "type": "call",
+            "named": true
+          },
+          {
+            "type": "continue",
+            "named": true
+          },
+          {
+            "type": "escaped_string",
+            "named": true
+          },
+          {
+            "type": "float",
+            "named": true
+          },
+          {
+            "type": "for",
+            "named": true
+          },
+          {
+            "type": "function",
             "named": true
           },
           {
@@ -136,11 +167,23 @@
             "named": true
           },
           {
-            "type": "if_expression",
+            "type": "if",
             "named": true
           },
           {
-            "type": "index_expression",
+            "type": "import",
+            "named": true
+          },
+          {
+            "type": "index",
+            "named": true
+          },
+          {
+            "type": "integer",
+            "named": true
+          },
+          {
+            "type": "list",
             "named": true
           },
           {
@@ -148,7 +191,7 @@
             "named": true
           },
           {
-            "type": "member_expression",
+            "type": "member",
             "named": true
           },
           {
@@ -156,11 +199,15 @@
             "named": true
           },
           {
-            "type": "number",
+            "type": "parenthesized_expression",
             "named": true
           },
           {
-            "type": "parenthesized_expression",
+            "type": "raw_string",
+            "named": true
+          },
+          {
+            "type": "return",
             "named": true
           },
           {
@@ -168,7 +215,175 @@
             "named": true
           },
           {
+            "type": "tau_call",
+            "named": true
+          },
+          {
             "type": "unary_expression",
+            "named": true
+          },
+          {
+            "type": "update_expression",
+            "named": true
+          }
+        ]
+      },
+      "operator": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "%=",
+            "named": false
+          },
+          {
+            "type": "&=",
+            "named": false
+          },
+          {
+            "type": "*=",
+            "named": false
+          },
+          {
+            "type": "+=",
+            "named": false
+          },
+          {
+            "type": "-=",
+            "named": false
+          },
+          {
+            "type": "/=",
+            "named": false
+          },
+          {
+            "type": "<<=",
+            "named": false
+          },
+          {
+            "type": "=",
+            "named": false
+          },
+          {
+            "type": ">>=",
+            "named": false
+          },
+          {
+            "type": "^=",
+            "named": false
+          },
+          {
+            "type": "|=",
+            "named": false
+          }
+        ]
+      },
+      "right": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "assignment",
+            "named": true
+          },
+          {
+            "type": "binary_expression",
+            "named": true
+          },
+          {
+            "type": "boolean",
+            "named": true
+          },
+          {
+            "type": "break",
+            "named": true
+          },
+          {
+            "type": "call",
+            "named": true
+          },
+          {
+            "type": "continue",
+            "named": true
+          },
+          {
+            "type": "escaped_string",
+            "named": true
+          },
+          {
+            "type": "float",
+            "named": true
+          },
+          {
+            "type": "for",
+            "named": true
+          },
+          {
+            "type": "function",
+            "named": true
+          },
+          {
+            "type": "identifier",
+            "named": true
+          },
+          {
+            "type": "if",
+            "named": true
+          },
+          {
+            "type": "import",
+            "named": true
+          },
+          {
+            "type": "index",
+            "named": true
+          },
+          {
+            "type": "integer",
+            "named": true
+          },
+          {
+            "type": "list",
+            "named": true
+          },
+          {
+            "type": "map",
+            "named": true
+          },
+          {
+            "type": "member",
+            "named": true
+          },
+          {
+            "type": "null",
+            "named": true
+          },
+          {
+            "type": "parenthesized_expression",
+            "named": true
+          },
+          {
+            "type": "raw_string",
+            "named": true
+          },
+          {
+            "type": "return",
+            "named": true
+          },
+          {
+            "type": "string",
+            "named": true
+          },
+          {
+            "type": "tau_call",
+            "named": true
+          },
+          {
+            "type": "unary_expression",
+            "named": true
+          },
+          {
+            "type": "update_expression",
             "named": true
           }
         ]
@@ -184,7 +399,7 @@
         "required": true,
         "types": [
           {
-            "type": "array",
+            "type": "assignment",
             "named": true
           },
           {
@@ -196,11 +411,31 @@
             "named": true
           },
           {
-            "type": "call_expression",
+            "type": "break",
             "named": true
           },
           {
-            "type": "function_expression",
+            "type": "call",
+            "named": true
+          },
+          {
+            "type": "continue",
+            "named": true
+          },
+          {
+            "type": "escaped_string",
+            "named": true
+          },
+          {
+            "type": "float",
+            "named": true
+          },
+          {
+            "type": "for",
+            "named": true
+          },
+          {
+            "type": "function",
             "named": true
           },
           {
@@ -208,11 +443,23 @@
             "named": true
           },
           {
-            "type": "if_expression",
+            "type": "if",
             "named": true
           },
           {
-            "type": "index_expression",
+            "type": "import",
+            "named": true
+          },
+          {
+            "type": "index",
+            "named": true
+          },
+          {
+            "type": "integer",
+            "named": true
+          },
+          {
+            "type": "list",
             "named": true
           },
           {
@@ -220,7 +467,7 @@
             "named": true
           },
           {
-            "type": "member_expression",
+            "type": "member",
             "named": true
           },
           {
@@ -228,11 +475,15 @@
             "named": true
           },
           {
-            "type": "number",
+            "type": "parenthesized_expression",
             "named": true
           },
           {
-            "type": "parenthesized_expression",
+            "type": "raw_string",
+            "named": true
+          },
+          {
+            "type": "return",
             "named": true
           },
           {
@@ -240,7 +491,15 @@
             "named": true
           },
           {
+            "type": "tau_call",
+            "named": true
+          },
+          {
             "type": "unary_expression",
+            "named": true
+          },
+          {
+            "type": "update_expression",
             "named": true
           }
         ]
@@ -255,6 +514,10 @@
           },
           {
             "type": "%",
+            "named": false
+          },
+          {
+            "type": "&",
             "named": false
           },
           {
@@ -282,6 +545,10 @@
             "named": false
           },
           {
+            "type": "<<",
+            "named": false
+          },
+          {
             "type": "<=",
             "named": false
           },
@@ -298,6 +565,18 @@
             "named": false
           },
           {
+            "type": ">>",
+            "named": false
+          },
+          {
+            "type": "^",
+            "named": false
+          },
+          {
+            "type": "|",
+            "named": false
+          },
+          {
             "type": "||",
             "named": false
           }
@@ -308,7 +587,7 @@
         "required": true,
         "types": [
           {
-            "type": "array",
+            "type": "assignment",
             "named": true
           },
           {
@@ -320,11 +599,31 @@
             "named": true
           },
           {
-            "type": "call_expression",
+            "type": "break",
             "named": true
           },
           {
-            "type": "function_expression",
+            "type": "call",
+            "named": true
+          },
+          {
+            "type": "continue",
+            "named": true
+          },
+          {
+            "type": "escaped_string",
+            "named": true
+          },
+          {
+            "type": "float",
+            "named": true
+          },
+          {
+            "type": "for",
+            "named": true
+          },
+          {
+            "type": "function",
             "named": true
           },
           {
@@ -332,11 +631,23 @@
             "named": true
           },
           {
-            "type": "if_expression",
+            "type": "if",
             "named": true
           },
           {
-            "type": "index_expression",
+            "type": "import",
+            "named": true
+          },
+          {
+            "type": "index",
+            "named": true
+          },
+          {
+            "type": "integer",
+            "named": true
+          },
+          {
+            "type": "list",
             "named": true
           },
           {
@@ -344,7 +655,7 @@
             "named": true
           },
           {
-            "type": "member_expression",
+            "type": "member",
             "named": true
           },
           {
@@ -352,11 +663,15 @@
             "named": true
           },
           {
-            "type": "number",
+            "type": "parenthesized_expression",
             "named": true
           },
           {
-            "type": "parenthesized_expression",
+            "type": "raw_string",
+            "named": true
+          },
+          {
+            "type": "return",
             "named": true
           },
           {
@@ -364,7 +679,15 @@
             "named": true
           },
           {
+            "type": "tau_call",
+            "named": true
+          },
+          {
             "type": "unary_expression",
+            "named": true
+          },
+          {
+            "type": "update_expression",
             "named": true
           }
         ]
@@ -384,35 +707,103 @@
           "named": true
         },
         {
-          "type": "break_statement",
+          "type": "binary_expression",
           "named": true
         },
         {
-          "type": "comment",
+          "type": "boolean",
           "named": true
         },
         {
-          "type": "continue_statement",
+          "type": "break",
           "named": true
         },
         {
-          "type": "expression_statement",
+          "type": "call",
           "named": true
         },
         {
-          "type": "for_statement",
+          "type": "continue",
           "named": true
         },
         {
-          "type": "if_statement",
+          "type": "escaped_string",
           "named": true
         },
         {
-          "type": "return_statement",
+          "type": "float",
           "named": true
         },
         {
-          "type": "tau_statement",
+          "type": "for",
+          "named": true
+        },
+        {
+          "type": "function",
+          "named": true
+        },
+        {
+          "type": "identifier",
+          "named": true
+        },
+        {
+          "type": "if",
+          "named": true
+        },
+        {
+          "type": "import",
+          "named": true
+        },
+        {
+          "type": "index",
+          "named": true
+        },
+        {
+          "type": "integer",
+          "named": true
+        },
+        {
+          "type": "list",
+          "named": true
+        },
+        {
+          "type": "map",
+          "named": true
+        },
+        {
+          "type": "member",
+          "named": true
+        },
+        {
+          "type": "null",
+          "named": true
+        },
+        {
+          "type": "parenthesized_expression",
+          "named": true
+        },
+        {
+          "type": "raw_string",
+          "named": true
+        },
+        {
+          "type": "return",
+          "named": true
+        },
+        {
+          "type": "string",
+          "named": true
+        },
+        {
+          "type": "tau_call",
+          "named": true
+        },
+        {
+          "type": "unary_expression",
+          "named": true
+        },
+        {
+          "type": "update_expression",
           "named": true
         }
       ]
@@ -424,12 +815,7 @@
     "fields": {}
   },
   {
-    "type": "break_statement",
-    "named": true,
-    "fields": {}
-  },
-  {
-    "type": "call_expression",
+    "type": "call",
     "named": true,
     "fields": {
       "function": {
@@ -437,7 +823,7 @@
         "required": true,
         "types": [
           {
-            "type": "array",
+            "type": "assignment",
             "named": true
           },
           {
@@ -449,11 +835,31 @@
             "named": true
           },
           {
-            "type": "call_expression",
+            "type": "break",
             "named": true
           },
           {
-            "type": "function_expression",
+            "type": "call",
+            "named": true
+          },
+          {
+            "type": "continue",
+            "named": true
+          },
+          {
+            "type": "escaped_string",
+            "named": true
+          },
+          {
+            "type": "float",
+            "named": true
+          },
+          {
+            "type": "for",
+            "named": true
+          },
+          {
+            "type": "function",
             "named": true
           },
           {
@@ -461,11 +867,23 @@
             "named": true
           },
           {
-            "type": "if_expression",
+            "type": "if",
             "named": true
           },
           {
-            "type": "index_expression",
+            "type": "import",
+            "named": true
+          },
+          {
+            "type": "index",
+            "named": true
+          },
+          {
+            "type": "integer",
+            "named": true
+          },
+          {
+            "type": "list",
             "named": true
           },
           {
@@ -473,7 +891,7 @@
             "named": true
           },
           {
-            "type": "member_expression",
+            "type": "member",
             "named": true
           },
           {
@@ -481,11 +899,15 @@
             "named": true
           },
           {
-            "type": "number",
+            "type": "parenthesized_expression",
             "named": true
           },
           {
-            "type": "parenthesized_expression",
+            "type": "raw_string",
+            "named": true
+          },
+          {
+            "type": "return",
             "named": true
           },
           {
@@ -493,7 +915,15 @@
             "named": true
           },
           {
+            "type": "tau_call",
+            "named": true
+          },
+          {
             "type": "unary_expression",
+            "named": true
+          },
+          {
+            "type": "update_expression",
             "named": true
           }
         ]
@@ -504,100 +934,532 @@
       "required": false,
       "types": [
         {
-          "type": "argument_list",
+          "type": "arguments",
           "named": true
         }
       ]
     }
   },
   {
-    "type": "continue_statement",
+    "type": "for",
     "named": true,
-    "fields": {}
+    "fields": {
+      "body": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "block",
+            "named": true
+          }
+        ]
+      },
+      "condition": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "assignment",
+            "named": true
+          },
+          {
+            "type": "binary_expression",
+            "named": true
+          },
+          {
+            "type": "boolean",
+            "named": true
+          },
+          {
+            "type": "break",
+            "named": true
+          },
+          {
+            "type": "call",
+            "named": true
+          },
+          {
+            "type": "continue",
+            "named": true
+          },
+          {
+            "type": "escaped_string",
+            "named": true
+          },
+          {
+            "type": "float",
+            "named": true
+          },
+          {
+            "type": "for",
+            "named": true
+          },
+          {
+            "type": "function",
+            "named": true
+          },
+          {
+            "type": "identifier",
+            "named": true
+          },
+          {
+            "type": "if",
+            "named": true
+          },
+          {
+            "type": "import",
+            "named": true
+          },
+          {
+            "type": "index",
+            "named": true
+          },
+          {
+            "type": "integer",
+            "named": true
+          },
+          {
+            "type": "list",
+            "named": true
+          },
+          {
+            "type": "map",
+            "named": true
+          },
+          {
+            "type": "member",
+            "named": true
+          },
+          {
+            "type": "null",
+            "named": true
+          },
+          {
+            "type": "parenthesized_expression",
+            "named": true
+          },
+          {
+            "type": "raw_string",
+            "named": true
+          },
+          {
+            "type": "return",
+            "named": true
+          },
+          {
+            "type": "string",
+            "named": true
+          },
+          {
+            "type": "tau_call",
+            "named": true
+          },
+          {
+            "type": "unary_expression",
+            "named": true
+          },
+          {
+            "type": "update_expression",
+            "named": true
+          }
+        ]
+      },
+      "initializer": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "assignment",
+            "named": true
+          },
+          {
+            "type": "binary_expression",
+            "named": true
+          },
+          {
+            "type": "boolean",
+            "named": true
+          },
+          {
+            "type": "break",
+            "named": true
+          },
+          {
+            "type": "call",
+            "named": true
+          },
+          {
+            "type": "continue",
+            "named": true
+          },
+          {
+            "type": "escaped_string",
+            "named": true
+          },
+          {
+            "type": "float",
+            "named": true
+          },
+          {
+            "type": "for",
+            "named": true
+          },
+          {
+            "type": "function",
+            "named": true
+          },
+          {
+            "type": "identifier",
+            "named": true
+          },
+          {
+            "type": "if",
+            "named": true
+          },
+          {
+            "type": "import",
+            "named": true
+          },
+          {
+            "type": "index",
+            "named": true
+          },
+          {
+            "type": "integer",
+            "named": true
+          },
+          {
+            "type": "list",
+            "named": true
+          },
+          {
+            "type": "map",
+            "named": true
+          },
+          {
+            "type": "member",
+            "named": true
+          },
+          {
+            "type": "null",
+            "named": true
+          },
+          {
+            "type": "parenthesized_expression",
+            "named": true
+          },
+          {
+            "type": "raw_string",
+            "named": true
+          },
+          {
+            "type": "return",
+            "named": true
+          },
+          {
+            "type": "string",
+            "named": true
+          },
+          {
+            "type": "tau_call",
+            "named": true
+          },
+          {
+            "type": "unary_expression",
+            "named": true
+          },
+          {
+            "type": "update_expression",
+            "named": true
+          }
+        ]
+      },
+      "update": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "assignment",
+            "named": true
+          },
+          {
+            "type": "binary_expression",
+            "named": true
+          },
+          {
+            "type": "boolean",
+            "named": true
+          },
+          {
+            "type": "break",
+            "named": true
+          },
+          {
+            "type": "call",
+            "named": true
+          },
+          {
+            "type": "continue",
+            "named": true
+          },
+          {
+            "type": "escaped_string",
+            "named": true
+          },
+          {
+            "type": "float",
+            "named": true
+          },
+          {
+            "type": "for",
+            "named": true
+          },
+          {
+            "type": "function",
+            "named": true
+          },
+          {
+            "type": "identifier",
+            "named": true
+          },
+          {
+            "type": "if",
+            "named": true
+          },
+          {
+            "type": "import",
+            "named": true
+          },
+          {
+            "type": "index",
+            "named": true
+          },
+          {
+            "type": "integer",
+            "named": true
+          },
+          {
+            "type": "list",
+            "named": true
+          },
+          {
+            "type": "map",
+            "named": true
+          },
+          {
+            "type": "member",
+            "named": true
+          },
+          {
+            "type": "null",
+            "named": true
+          },
+          {
+            "type": "parenthesized_expression",
+            "named": true
+          },
+          {
+            "type": "raw_string",
+            "named": true
+          },
+          {
+            "type": "return",
+            "named": true
+          },
+          {
+            "type": "string",
+            "named": true
+          },
+          {
+            "type": "tau_call",
+            "named": true
+          },
+          {
+            "type": "unary_expression",
+            "named": true
+          },
+          {
+            "type": "update_expression",
+            "named": true
+          }
+        ]
+      }
+    }
   },
   {
-    "type": "expression_statement",
+    "type": "function",
+    "named": true,
+    "fields": {
+      "body": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "block",
+            "named": true
+          }
+        ]
+      }
+    },
+    "children": {
+      "multiple": false,
+      "required": false,
+      "types": [
+        {
+          "type": "parameters",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "if",
+    "named": true,
+    "fields": {
+      "alternative": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "block",
+            "named": true
+          },
+          {
+            "type": "if",
+            "named": true
+          }
+        ]
+      },
+      "condition": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "assignment",
+            "named": true
+          },
+          {
+            "type": "binary_expression",
+            "named": true
+          },
+          {
+            "type": "boolean",
+            "named": true
+          },
+          {
+            "type": "break",
+            "named": true
+          },
+          {
+            "type": "call",
+            "named": true
+          },
+          {
+            "type": "continue",
+            "named": true
+          },
+          {
+            "type": "escaped_string",
+            "named": true
+          },
+          {
+            "type": "float",
+            "named": true
+          },
+          {
+            "type": "for",
+            "named": true
+          },
+          {
+            "type": "function",
+            "named": true
+          },
+          {
+            "type": "identifier",
+            "named": true
+          },
+          {
+            "type": "if",
+            "named": true
+          },
+          {
+            "type": "import",
+            "named": true
+          },
+          {
+            "type": "index",
+            "named": true
+          },
+          {
+            "type": "integer",
+            "named": true
+          },
+          {
+            "type": "list",
+            "named": true
+          },
+          {
+            "type": "map",
+            "named": true
+          },
+          {
+            "type": "member",
+            "named": true
+          },
+          {
+            "type": "null",
+            "named": true
+          },
+          {
+            "type": "parenthesized_expression",
+            "named": true
+          },
+          {
+            "type": "raw_string",
+            "named": true
+          },
+          {
+            "type": "return",
+            "named": true
+          },
+          {
+            "type": "string",
+            "named": true
+          },
+          {
+            "type": "tau_call",
+            "named": true
+          },
+          {
+            "type": "unary_expression",
+            "named": true
+          },
+          {
+            "type": "update_expression",
+            "named": true
+          }
+        ]
+      },
+      "consequence": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "block",
+            "named": true
+          }
+        ]
+      }
+    }
+  },
+  {
+    "type": "import",
     "named": true,
     "fields": {},
     "children": {
       "multiple": false,
       "required": true,
       "types": [
-        {
-          "type": "array",
-          "named": true
-        },
-        {
-          "type": "binary_expression",
-          "named": true
-        },
-        {
-          "type": "boolean",
-          "named": true
-        },
-        {
-          "type": "call_expression",
-          "named": true
-        },
-        {
-          "type": "function_expression",
-          "named": true
-        },
-        {
-          "type": "identifier",
-          "named": true
-        },
-        {
-          "type": "if_expression",
-          "named": true
-        },
-        {
-          "type": "index_expression",
-          "named": true
-        },
-        {
-          "type": "map",
-          "named": true
-        },
-        {
-          "type": "member_expression",
-          "named": true
-        },
-        {
-          "type": "null",
-          "named": true
-        },
-        {
-          "type": "number",
-          "named": true
-        },
-        {
-          "type": "parenthesized_expression",
-          "named": true
-        },
-        {
-          "type": "string",
-          "named": true
-        },
-        {
-          "type": "unary_expression",
-          "named": true
-        }
-      ]
-    }
-  },
-  {
-    "type": "for_statement",
-    "named": true,
-    "fields": {},
-    "children": {
-      "multiple": true,
-      "required": true,
-      "types": [
-        {
-          "type": "array",
-          "named": true
-        },
         {
           "type": "assignment",
           "named": true
@@ -607,19 +1469,35 @@
           "named": true
         },
         {
-          "type": "block",
-          "named": true
-        },
-        {
           "type": "boolean",
           "named": true
         },
         {
-          "type": "call_expression",
+          "type": "break",
           "named": true
         },
         {
-          "type": "function_expression",
+          "type": "call",
+          "named": true
+        },
+        {
+          "type": "continue",
+          "named": true
+        },
+        {
+          "type": "escaped_string",
+          "named": true
+        },
+        {
+          "type": "float",
+          "named": true
+        },
+        {
+          "type": "for",
+          "named": true
+        },
+        {
+          "type": "function",
           "named": true
         },
         {
@@ -627,101 +1505,23 @@
           "named": true
         },
         {
-          "type": "if_expression",
+          "type": "if",
           "named": true
         },
         {
-          "type": "index_expression",
+          "type": "import",
           "named": true
         },
         {
-          "type": "map",
+          "type": "index",
           "named": true
         },
         {
-          "type": "member_expression",
+          "type": "integer",
           "named": true
         },
         {
-          "type": "null",
-          "named": true
-        },
-        {
-          "type": "number",
-          "named": true
-        },
-        {
-          "type": "parenthesized_expression",
-          "named": true
-        },
-        {
-          "type": "string",
-          "named": true
-        },
-        {
-          "type": "unary_expression",
-          "named": true
-        }
-      ]
-    }
-  },
-  {
-    "type": "function_expression",
-    "named": true,
-    "fields": {},
-    "children": {
-      "multiple": true,
-      "required": true,
-      "types": [
-        {
-          "type": "block",
-          "named": true
-        },
-        {
-          "type": "parameter_list",
-          "named": true
-        }
-      ]
-    }
-  },
-  {
-    "type": "if_expression",
-    "named": true,
-    "fields": {},
-    "children": {
-      "multiple": true,
-      "required": true,
-      "types": [
-        {
-          "type": "array",
-          "named": true
-        },
-        {
-          "type": "binary_expression",
-          "named": true
-        },
-        {
-          "type": "boolean",
-          "named": true
-        },
-        {
-          "type": "call_expression",
-          "named": true
-        },
-        {
-          "type": "function_expression",
-          "named": true
-        },
-        {
-          "type": "identifier",
-          "named": true
-        },
-        {
-          "type": "if_expression",
-          "named": true
-        },
-        {
-          "type": "index_expression",
+          "type": "list",
           "named": true
         },
         {
@@ -729,7 +1529,7 @@
           "named": true
         },
         {
-          "type": "member_expression",
+          "type": "member",
           "named": true
         },
         {
@@ -737,11 +1537,15 @@
           "named": true
         },
         {
-          "type": "number",
+          "type": "parenthesized_expression",
           "named": true
         },
         {
-          "type": "parenthesized_expression",
+          "type": "raw_string",
+          "named": true
+        },
+        {
+          "type": "return",
           "named": true
         },
         {
@@ -749,93 +1553,22 @@
           "named": true
         },
         {
+          "type": "tau_call",
+          "named": true
+        },
+        {
           "type": "unary_expression",
+          "named": true
+        },
+        {
+          "type": "update_expression",
           "named": true
         }
       ]
     }
   },
   {
-    "type": "if_statement",
-    "named": true,
-    "fields": {},
-    "children": {
-      "multiple": true,
-      "required": true,
-      "types": [
-        {
-          "type": "array",
-          "named": true
-        },
-        {
-          "type": "binary_expression",
-          "named": true
-        },
-        {
-          "type": "block",
-          "named": true
-        },
-        {
-          "type": "boolean",
-          "named": true
-        },
-        {
-          "type": "call_expression",
-          "named": true
-        },
-        {
-          "type": "function_expression",
-          "named": true
-        },
-        {
-          "type": "identifier",
-          "named": true
-        },
-        {
-          "type": "if_expression",
-          "named": true
-        },
-        {
-          "type": "if_statement",
-          "named": true
-        },
-        {
-          "type": "index_expression",
-          "named": true
-        },
-        {
-          "type": "map",
-          "named": true
-        },
-        {
-          "type": "member_expression",
-          "named": true
-        },
-        {
-          "type": "null",
-          "named": true
-        },
-        {
-          "type": "number",
-          "named": true
-        },
-        {
-          "type": "parenthesized_expression",
-          "named": true
-        },
-        {
-          "type": "string",
-          "named": true
-        },
-        {
-          "type": "unary_expression",
-          "named": true
-        }
-      ]
-    }
-  },
-  {
-    "type": "index_expression",
+    "type": "index",
     "named": true,
     "fields": {
       "index": {
@@ -843,7 +1576,7 @@
         "required": true,
         "types": [
           {
-            "type": "array",
+            "type": "assignment",
             "named": true
           },
           {
@@ -855,11 +1588,31 @@
             "named": true
           },
           {
-            "type": "call_expression",
+            "type": "break",
             "named": true
           },
           {
-            "type": "function_expression",
+            "type": "call",
+            "named": true
+          },
+          {
+            "type": "continue",
+            "named": true
+          },
+          {
+            "type": "escaped_string",
+            "named": true
+          },
+          {
+            "type": "float",
+            "named": true
+          },
+          {
+            "type": "for",
+            "named": true
+          },
+          {
+            "type": "function",
             "named": true
           },
           {
@@ -867,11 +1620,23 @@
             "named": true
           },
           {
-            "type": "if_expression",
+            "type": "if",
             "named": true
           },
           {
-            "type": "index_expression",
+            "type": "import",
+            "named": true
+          },
+          {
+            "type": "index",
+            "named": true
+          },
+          {
+            "type": "integer",
+            "named": true
+          },
+          {
+            "type": "list",
             "named": true
           },
           {
@@ -879,7 +1644,7 @@
             "named": true
           },
           {
-            "type": "member_expression",
+            "type": "member",
             "named": true
           },
           {
@@ -887,11 +1652,15 @@
             "named": true
           },
           {
-            "type": "number",
+            "type": "parenthesized_expression",
             "named": true
           },
           {
-            "type": "parenthesized_expression",
+            "type": "raw_string",
+            "named": true
+          },
+          {
+            "type": "return",
             "named": true
           },
           {
@@ -899,7 +1668,15 @@
             "named": true
           },
           {
+            "type": "tau_call",
+            "named": true
+          },
+          {
             "type": "unary_expression",
+            "named": true
+          },
+          {
+            "type": "update_expression",
             "named": true
           }
         ]
@@ -909,7 +1686,7 @@
         "required": true,
         "types": [
           {
-            "type": "array",
+            "type": "assignment",
             "named": true
           },
           {
@@ -921,11 +1698,31 @@
             "named": true
           },
           {
-            "type": "call_expression",
+            "type": "break",
             "named": true
           },
           {
-            "type": "function_expression",
+            "type": "call",
+            "named": true
+          },
+          {
+            "type": "continue",
+            "named": true
+          },
+          {
+            "type": "escaped_string",
+            "named": true
+          },
+          {
+            "type": "float",
+            "named": true
+          },
+          {
+            "type": "for",
+            "named": true
+          },
+          {
+            "type": "function",
             "named": true
           },
           {
@@ -933,11 +1730,23 @@
             "named": true
           },
           {
-            "type": "if_expression",
+            "type": "if",
             "named": true
           },
           {
-            "type": "index_expression",
+            "type": "import",
+            "named": true
+          },
+          {
+            "type": "index",
+            "named": true
+          },
+          {
+            "type": "integer",
+            "named": true
+          },
+          {
+            "type": "list",
             "named": true
           },
           {
@@ -945,7 +1754,7 @@
             "named": true
           },
           {
-            "type": "member_expression",
+            "type": "member",
             "named": true
           },
           {
@@ -953,11 +1762,15 @@
             "named": true
           },
           {
-            "type": "number",
+            "type": "parenthesized_expression",
             "named": true
           },
           {
-            "type": "parenthesized_expression",
+            "type": "raw_string",
+            "named": true
+          },
+          {
+            "type": "return",
             "named": true
           },
           {
@@ -965,11 +1778,149 @@
             "named": true
           },
           {
+            "type": "tau_call",
+            "named": true
+          },
+          {
             "type": "unary_expression",
+            "named": true
+          },
+          {
+            "type": "update_expression",
             "named": true
           }
         ]
       }
+    }
+  },
+  {
+    "type": "interpolation",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": false,
+      "types": [
+        {
+          "type": "assignment",
+          "named": true
+        },
+        {
+          "type": "binary_expression",
+          "named": true
+        },
+        {
+          "type": "boolean",
+          "named": true
+        },
+        {
+          "type": "break",
+          "named": true
+        },
+        {
+          "type": "call",
+          "named": true
+        },
+        {
+          "type": "continue",
+          "named": true
+        },
+        {
+          "type": "escaped_string",
+          "named": true
+        },
+        {
+          "type": "float",
+          "named": true
+        },
+        {
+          "type": "for",
+          "named": true
+        },
+        {
+          "type": "function",
+          "named": true
+        },
+        {
+          "type": "identifier",
+          "named": true
+        },
+        {
+          "type": "if",
+          "named": true
+        },
+        {
+          "type": "import",
+          "named": true
+        },
+        {
+          "type": "index",
+          "named": true
+        },
+        {
+          "type": "integer",
+          "named": true
+        },
+        {
+          "type": "list",
+          "named": true
+        },
+        {
+          "type": "map",
+          "named": true
+        },
+        {
+          "type": "member",
+          "named": true
+        },
+        {
+          "type": "null",
+          "named": true
+        },
+        {
+          "type": "parenthesized_expression",
+          "named": true
+        },
+        {
+          "type": "raw_string",
+          "named": true
+        },
+        {
+          "type": "return",
+          "named": true
+        },
+        {
+          "type": "string",
+          "named": true
+        },
+        {
+          "type": "tau_call",
+          "named": true
+        },
+        {
+          "type": "unary_expression",
+          "named": true
+        },
+        {
+          "type": "update_expression",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "list",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": false,
+      "types": [
+        {
+          "type": "arguments",
+          "named": true
+        }
+      ]
     }
   },
   {
@@ -1005,84 +1956,13 @@
   {
     "type": "map_entry",
     "named": true,
-    "fields": {},
-    "children": {
-      "multiple": true,
-      "required": true,
-      "types": [
-        {
-          "type": "array",
-          "named": true
-        },
-        {
-          "type": "binary_expression",
-          "named": true
-        },
-        {
-          "type": "boolean",
-          "named": true
-        },
-        {
-          "type": "call_expression",
-          "named": true
-        },
-        {
-          "type": "function_expression",
-          "named": true
-        },
-        {
-          "type": "identifier",
-          "named": true
-        },
-        {
-          "type": "if_expression",
-          "named": true
-        },
-        {
-          "type": "index_expression",
-          "named": true
-        },
-        {
-          "type": "map",
-          "named": true
-        },
-        {
-          "type": "member_expression",
-          "named": true
-        },
-        {
-          "type": "null",
-          "named": true
-        },
-        {
-          "type": "number",
-          "named": true
-        },
-        {
-          "type": "parenthesized_expression",
-          "named": true
-        },
-        {
-          "type": "string",
-          "named": true
-        },
-        {
-          "type": "unary_expression",
-          "named": true
-        }
-      ]
-    }
-  },
-  {
-    "type": "member_expression",
-    "named": true,
     "fields": {
-      "object": {
+      "key": {
         "multiple": false,
         "required": true,
         "types": [
           {
-            "type": "array",
+            "type": "assignment",
             "named": true
           },
           {
@@ -1094,11 +1974,31 @@
             "named": true
           },
           {
-            "type": "call_expression",
+            "type": "break",
             "named": true
           },
           {
-            "type": "function_expression",
+            "type": "call",
+            "named": true
+          },
+          {
+            "type": "continue",
+            "named": true
+          },
+          {
+            "type": "escaped_string",
+            "named": true
+          },
+          {
+            "type": "float",
+            "named": true
+          },
+          {
+            "type": "for",
+            "named": true
+          },
+          {
+            "type": "function",
             "named": true
           },
           {
@@ -1106,11 +2006,23 @@
             "named": true
           },
           {
-            "type": "if_expression",
+            "type": "if",
             "named": true
           },
           {
-            "type": "index_expression",
+            "type": "import",
+            "named": true
+          },
+          {
+            "type": "index",
+            "named": true
+          },
+          {
+            "type": "integer",
+            "named": true
+          },
+          {
+            "type": "list",
             "named": true
           },
           {
@@ -1118,7 +2030,7 @@
             "named": true
           },
           {
-            "type": "member_expression",
+            "type": "member",
             "named": true
           },
           {
@@ -1126,11 +2038,15 @@
             "named": true
           },
           {
-            "type": "number",
+            "type": "parenthesized_expression",
             "named": true
           },
           {
-            "type": "parenthesized_expression",
+            "type": "raw_string",
+            "named": true
+          },
+          {
+            "type": "return",
             "named": true
           },
           {
@@ -1138,7 +2054,241 @@
             "named": true
           },
           {
+            "type": "tau_call",
+            "named": true
+          },
+          {
             "type": "unary_expression",
+            "named": true
+          },
+          {
+            "type": "update_expression",
+            "named": true
+          }
+        ]
+      },
+      "value": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "assignment",
+            "named": true
+          },
+          {
+            "type": "binary_expression",
+            "named": true
+          },
+          {
+            "type": "boolean",
+            "named": true
+          },
+          {
+            "type": "break",
+            "named": true
+          },
+          {
+            "type": "call",
+            "named": true
+          },
+          {
+            "type": "continue",
+            "named": true
+          },
+          {
+            "type": "escaped_string",
+            "named": true
+          },
+          {
+            "type": "float",
+            "named": true
+          },
+          {
+            "type": "for",
+            "named": true
+          },
+          {
+            "type": "function",
+            "named": true
+          },
+          {
+            "type": "identifier",
+            "named": true
+          },
+          {
+            "type": "if",
+            "named": true
+          },
+          {
+            "type": "import",
+            "named": true
+          },
+          {
+            "type": "index",
+            "named": true
+          },
+          {
+            "type": "integer",
+            "named": true
+          },
+          {
+            "type": "list",
+            "named": true
+          },
+          {
+            "type": "map",
+            "named": true
+          },
+          {
+            "type": "member",
+            "named": true
+          },
+          {
+            "type": "null",
+            "named": true
+          },
+          {
+            "type": "parenthesized_expression",
+            "named": true
+          },
+          {
+            "type": "raw_string",
+            "named": true
+          },
+          {
+            "type": "return",
+            "named": true
+          },
+          {
+            "type": "string",
+            "named": true
+          },
+          {
+            "type": "tau_call",
+            "named": true
+          },
+          {
+            "type": "unary_expression",
+            "named": true
+          },
+          {
+            "type": "update_expression",
+            "named": true
+          }
+        ]
+      }
+    }
+  },
+  {
+    "type": "member",
+    "named": true,
+    "fields": {
+      "object": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "assignment",
+            "named": true
+          },
+          {
+            "type": "binary_expression",
+            "named": true
+          },
+          {
+            "type": "boolean",
+            "named": true
+          },
+          {
+            "type": "break",
+            "named": true
+          },
+          {
+            "type": "call",
+            "named": true
+          },
+          {
+            "type": "continue",
+            "named": true
+          },
+          {
+            "type": "escaped_string",
+            "named": true
+          },
+          {
+            "type": "float",
+            "named": true
+          },
+          {
+            "type": "for",
+            "named": true
+          },
+          {
+            "type": "function",
+            "named": true
+          },
+          {
+            "type": "identifier",
+            "named": true
+          },
+          {
+            "type": "if",
+            "named": true
+          },
+          {
+            "type": "import",
+            "named": true
+          },
+          {
+            "type": "index",
+            "named": true
+          },
+          {
+            "type": "integer",
+            "named": true
+          },
+          {
+            "type": "list",
+            "named": true
+          },
+          {
+            "type": "map",
+            "named": true
+          },
+          {
+            "type": "member",
+            "named": true
+          },
+          {
+            "type": "null",
+            "named": true
+          },
+          {
+            "type": "parenthesized_expression",
+            "named": true
+          },
+          {
+            "type": "raw_string",
+            "named": true
+          },
+          {
+            "type": "return",
+            "named": true
+          },
+          {
+            "type": "string",
+            "named": true
+          },
+          {
+            "type": "tau_call",
+            "named": true
+          },
+          {
+            "type": "unary_expression",
+            "named": true
+          },
+          {
+            "type": "update_expression",
             "named": true
           }
         ]
@@ -1156,7 +2306,7 @@
     }
   },
   {
-    "type": "parameter_list",
+    "type": "parameters",
     "named": true,
     "fields": {},
     "children": {
@@ -1179,7 +2329,7 @@
       "required": true,
       "types": [
         {
-          "type": "array",
+          "type": "assignment",
           "named": true
         },
         {
@@ -1191,11 +2341,31 @@
           "named": true
         },
         {
-          "type": "call_expression",
+          "type": "break",
           "named": true
         },
         {
-          "type": "function_expression",
+          "type": "call",
+          "named": true
+        },
+        {
+          "type": "continue",
+          "named": true
+        },
+        {
+          "type": "escaped_string",
+          "named": true
+        },
+        {
+          "type": "float",
+          "named": true
+        },
+        {
+          "type": "for",
+          "named": true
+        },
+        {
+          "type": "function",
           "named": true
         },
         {
@@ -1203,11 +2373,23 @@
           "named": true
         },
         {
-          "type": "if_expression",
+          "type": "if",
           "named": true
         },
         {
-          "type": "index_expression",
+          "type": "import",
+          "named": true
+        },
+        {
+          "type": "index",
+          "named": true
+        },
+        {
+          "type": "integer",
+          "named": true
+        },
+        {
+          "type": "list",
           "named": true
         },
         {
@@ -1215,7 +2397,7 @@
           "named": true
         },
         {
-          "type": "member_expression",
+          "type": "member",
           "named": true
         },
         {
@@ -1223,11 +2405,15 @@
           "named": true
         },
         {
-          "type": "number",
+          "type": "parenthesized_expression",
           "named": true
         },
         {
-          "type": "parenthesized_expression",
+          "type": "raw_string",
+          "named": true
+        },
+        {
+          "type": "return",
           "named": true
         },
         {
@@ -1235,14 +2421,27 @@
           "named": true
         },
         {
+          "type": "tau_call",
+          "named": true
+        },
+        {
           "type": "unary_expression",
+          "named": true
+        },
+        {
+          "type": "update_expression",
           "named": true
         }
       ]
     }
   },
   {
-    "type": "return_statement",
+    "type": "raw_string",
+    "named": true,
+    "fields": {}
+  },
+  {
+    "type": "return",
     "named": true,
     "fields": {},
     "children": {
@@ -1250,7 +2449,7 @@
       "required": false,
       "types": [
         {
-          "type": "array",
+          "type": "assignment",
           "named": true
         },
         {
@@ -1262,11 +2461,31 @@
           "named": true
         },
         {
-          "type": "call_expression",
+          "type": "break",
           "named": true
         },
         {
-          "type": "function_expression",
+          "type": "call",
+          "named": true
+        },
+        {
+          "type": "continue",
+          "named": true
+        },
+        {
+          "type": "escaped_string",
+          "named": true
+        },
+        {
+          "type": "float",
+          "named": true
+        },
+        {
+          "type": "for",
+          "named": true
+        },
+        {
+          "type": "function",
           "named": true
         },
         {
@@ -1274,11 +2493,23 @@
           "named": true
         },
         {
-          "type": "if_expression",
+          "type": "if",
           "named": true
         },
         {
-          "type": "index_expression",
+          "type": "import",
+          "named": true
+        },
+        {
+          "type": "index",
+          "named": true
+        },
+        {
+          "type": "integer",
+          "named": true
+        },
+        {
+          "type": "list",
           "named": true
         },
         {
@@ -1286,7 +2517,7 @@
           "named": true
         },
         {
-          "type": "member_expression",
+          "type": "member",
           "named": true
         },
         {
@@ -1294,11 +2525,15 @@
           "named": true
         },
         {
-          "type": "number",
+          "type": "parenthesized_expression",
           "named": true
         },
         {
-          "type": "parenthesized_expression",
+          "type": "raw_string",
+          "named": true
+        },
+        {
+          "type": "return",
           "named": true
         },
         {
@@ -1306,7 +2541,15 @@
           "named": true
         },
         {
+          "type": "tau_call",
+          "named": true
+        },
+        {
           "type": "unary_expression",
+          "named": true
+        },
+        {
+          "type": "update_expression",
           "named": true
         }
       ]
@@ -1325,35 +2568,103 @@
           "named": true
         },
         {
-          "type": "break_statement",
+          "type": "binary_expression",
           "named": true
         },
         {
-          "type": "comment",
+          "type": "boolean",
           "named": true
         },
         {
-          "type": "continue_statement",
+          "type": "break",
           "named": true
         },
         {
-          "type": "expression_statement",
+          "type": "call",
           "named": true
         },
         {
-          "type": "for_statement",
+          "type": "continue",
           "named": true
         },
         {
-          "type": "if_statement",
+          "type": "escaped_string",
           "named": true
         },
         {
-          "type": "return_statement",
+          "type": "float",
           "named": true
         },
         {
-          "type": "tau_statement",
+          "type": "for",
+          "named": true
+        },
+        {
+          "type": "function",
+          "named": true
+        },
+        {
+          "type": "identifier",
+          "named": true
+        },
+        {
+          "type": "if",
+          "named": true
+        },
+        {
+          "type": "import",
+          "named": true
+        },
+        {
+          "type": "index",
+          "named": true
+        },
+        {
+          "type": "integer",
+          "named": true
+        },
+        {
+          "type": "list",
+          "named": true
+        },
+        {
+          "type": "map",
+          "named": true
+        },
+        {
+          "type": "member",
+          "named": true
+        },
+        {
+          "type": "null",
+          "named": true
+        },
+        {
+          "type": "parenthesized_expression",
+          "named": true
+        },
+        {
+          "type": "raw_string",
+          "named": true
+        },
+        {
+          "type": "return",
+          "named": true
+        },
+        {
+          "type": "string",
+          "named": true
+        },
+        {
+          "type": "tau_call",
+          "named": true
+        },
+        {
+          "type": "unary_expression",
+          "named": true
+        },
+        {
+          "type": "update_expression",
           "named": true
         }
       ]
@@ -1362,10 +2673,24 @@
   {
     "type": "string",
     "named": true,
-    "fields": {}
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": false,
+      "types": [
+        {
+          "type": "escape_sequence",
+          "named": true
+        },
+        {
+          "type": "interpolation",
+          "named": true
+        }
+      ]
+    }
   },
   {
-    "type": "tau_statement",
+    "type": "tau_call",
     "named": true,
     "fields": {},
     "children": {
@@ -1373,7 +2698,7 @@
       "required": true,
       "types": [
         {
-          "type": "array",
+          "type": "assignment",
           "named": true
         },
         {
@@ -1385,11 +2710,31 @@
           "named": true
         },
         {
-          "type": "call_expression",
+          "type": "break",
           "named": true
         },
         {
-          "type": "function_expression",
+          "type": "call",
+          "named": true
+        },
+        {
+          "type": "continue",
+          "named": true
+        },
+        {
+          "type": "escaped_string",
+          "named": true
+        },
+        {
+          "type": "float",
+          "named": true
+        },
+        {
+          "type": "for",
+          "named": true
+        },
+        {
+          "type": "function",
           "named": true
         },
         {
@@ -1397,11 +2742,23 @@
           "named": true
         },
         {
-          "type": "if_expression",
+          "type": "if",
           "named": true
         },
         {
-          "type": "index_expression",
+          "type": "import",
+          "named": true
+        },
+        {
+          "type": "index",
+          "named": true
+        },
+        {
+          "type": "integer",
+          "named": true
+        },
+        {
+          "type": "list",
           "named": true
         },
         {
@@ -1409,7 +2766,7 @@
           "named": true
         },
         {
-          "type": "member_expression",
+          "type": "member",
           "named": true
         },
         {
@@ -1417,11 +2774,15 @@
           "named": true
         },
         {
-          "type": "number",
+          "type": "parenthesized_expression",
           "named": true
         },
         {
-          "type": "parenthesized_expression",
+          "type": "raw_string",
+          "named": true
+        },
+        {
+          "type": "return",
           "named": true
         },
         {
@@ -1429,7 +2790,15 @@
           "named": true
         },
         {
+          "type": "tau_call",
+          "named": true
+        },
+        {
           "type": "unary_expression",
+          "named": true
+        },
+        {
+          "type": "update_expression",
           "named": true
         }
       ]
@@ -1444,7 +2813,7 @@
         "required": true,
         "types": [
           {
-            "type": "array",
+            "type": "assignment",
             "named": true
           },
           {
@@ -1456,11 +2825,31 @@
             "named": true
           },
           {
-            "type": "call_expression",
+            "type": "break",
             "named": true
           },
           {
-            "type": "function_expression",
+            "type": "call",
+            "named": true
+          },
+          {
+            "type": "continue",
+            "named": true
+          },
+          {
+            "type": "escaped_string",
+            "named": true
+          },
+          {
+            "type": "float",
+            "named": true
+          },
+          {
+            "type": "for",
+            "named": true
+          },
+          {
+            "type": "function",
             "named": true
           },
           {
@@ -1468,11 +2857,23 @@
             "named": true
           },
           {
-            "type": "if_expression",
+            "type": "if",
             "named": true
           },
           {
-            "type": "index_expression",
+            "type": "import",
+            "named": true
+          },
+          {
+            "type": "index",
+            "named": true
+          },
+          {
+            "type": "integer",
+            "named": true
+          },
+          {
+            "type": "list",
             "named": true
           },
           {
@@ -1480,7 +2881,7 @@
             "named": true
           },
           {
-            "type": "member_expression",
+            "type": "member",
             "named": true
           },
           {
@@ -1488,11 +2889,15 @@
             "named": true
           },
           {
-            "type": "number",
+            "type": "parenthesized_expression",
             "named": true
           },
           {
-            "type": "parenthesized_expression",
+            "type": "raw_string",
+            "named": true
+          },
+          {
+            "type": "return",
             "named": true
           },
           {
@@ -1500,7 +2905,15 @@
             "named": true
           },
           {
+            "type": "tau_call",
+            "named": true
+          },
+          {
             "type": "unary_expression",
+            "named": true
+          },
+          {
+            "type": "update_expression",
             "named": true
           }
         ]
@@ -1514,11 +2927,137 @@
             "named": false
           },
           {
-            "type": "++",
+            "type": "-",
             "named": false
           },
           {
-            "type": "-",
+            "type": "~",
+            "named": false
+          }
+        ]
+      }
+    }
+  },
+  {
+    "type": "update_expression",
+    "named": true,
+    "fields": {
+      "argument": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "assignment",
+            "named": true
+          },
+          {
+            "type": "binary_expression",
+            "named": true
+          },
+          {
+            "type": "boolean",
+            "named": true
+          },
+          {
+            "type": "break",
+            "named": true
+          },
+          {
+            "type": "call",
+            "named": true
+          },
+          {
+            "type": "continue",
+            "named": true
+          },
+          {
+            "type": "escaped_string",
+            "named": true
+          },
+          {
+            "type": "float",
+            "named": true
+          },
+          {
+            "type": "for",
+            "named": true
+          },
+          {
+            "type": "function",
+            "named": true
+          },
+          {
+            "type": "identifier",
+            "named": true
+          },
+          {
+            "type": "if",
+            "named": true
+          },
+          {
+            "type": "import",
+            "named": true
+          },
+          {
+            "type": "index",
+            "named": true
+          },
+          {
+            "type": "integer",
+            "named": true
+          },
+          {
+            "type": "list",
+            "named": true
+          },
+          {
+            "type": "map",
+            "named": true
+          },
+          {
+            "type": "member",
+            "named": true
+          },
+          {
+            "type": "null",
+            "named": true
+          },
+          {
+            "type": "parenthesized_expression",
+            "named": true
+          },
+          {
+            "type": "raw_string",
+            "named": true
+          },
+          {
+            "type": "return",
+            "named": true
+          },
+          {
+            "type": "string",
+            "named": true
+          },
+          {
+            "type": "tau_call",
+            "named": true
+          },
+          {
+            "type": "unary_expression",
+            "named": true
+          },
+          {
+            "type": "update_expression",
+            "named": true
+          }
+        ]
+      },
+      "operator": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "++",
             "named": false
           },
           {
@@ -1550,11 +3089,19 @@
     "named": false
   },
   {
+    "type": "%=",
+    "named": false
+  },
+  {
+    "type": "&",
+    "named": false
+  },
+  {
     "type": "&&",
     "named": false
   },
   {
-    "type": "'",
+    "type": "&=",
     "named": false
   },
   {
@@ -1570,11 +3117,19 @@
     "named": false
   },
   {
+    "type": "*=",
+    "named": false
+  },
+  {
     "type": "+",
     "named": false
   },
   {
     "type": "++",
+    "named": false
+  },
+  {
+    "type": "+=",
     "named": false
   },
   {
@@ -1590,11 +3145,19 @@
     "named": false
   },
   {
+    "type": "-=",
+    "named": false
+  },
+  {
     "type": ".",
     "named": false
   },
   {
     "type": "/",
+    "named": false
+  },
+  {
+    "type": "/=",
     "named": false
   },
   {
@@ -1607,6 +3170,14 @@
   },
   {
     "type": "<",
+    "named": false
+  },
+  {
+    "type": "<<",
+    "named": false
+  },
+  {
+    "type": "<<=",
     "named": false
   },
   {
@@ -1630,6 +3201,14 @@
     "named": false
   },
   {
+    "type": ">>",
+    "named": false
+  },
+  {
+    "type": ">>=",
+    "named": false
+  },
+  {
     "type": "[",
     "named": false
   },
@@ -1638,12 +3217,20 @@
     "named": false
   },
   {
+    "type": "^",
+    "named": false
+  },
+  {
+    "type": "^=",
+    "named": false
+  },
+  {
     "type": "`",
     "named": false
   },
   {
     "type": "break",
-    "named": false
+    "named": true
   },
   {
     "type": "comment",
@@ -1651,15 +3238,27 @@
   },
   {
     "type": "continue",
-    "named": false
+    "named": true
   },
   {
     "type": "else",
     "named": false
   },
   {
+    "type": "escape_sequence",
+    "named": true
+  },
+  {
+    "type": "escaped_string",
+    "named": true
+  },
+  {
     "type": "false",
     "named": false
+  },
+  {
+    "type": "float",
+    "named": true
   },
   {
     "type": "fn",
@@ -1678,11 +3277,15 @@
     "named": false
   },
   {
-    "type": "null",
+    "type": "import",
+    "named": false
+  },
+  {
+    "type": "integer",
     "named": true
   },
   {
-    "type": "number",
+    "type": "null",
     "named": true
   },
   {
@@ -1702,11 +3305,23 @@
     "named": false
   },
   {
+    "type": "|",
+    "named": false
+  },
+  {
+    "type": "|=",
+    "named": false
+  },
+  {
     "type": "||",
     "named": false
   },
   {
     "type": "}",
+    "named": false
+  },
+  {
+    "type": "~",
     "named": false
   }
 ]

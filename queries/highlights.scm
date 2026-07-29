@@ -1,93 +1,89 @@
 ; Comments
+
 (comment) @comment
 
 ; Keywords
+
 [
   "fn"
   "if"
   "else"
   "for"
   "return"
-  "break"
-  "continue"
+  "import"
   "tau"
 ] @keyword
 
-; Boolean literals
-(boolean) @constant.builtin.boolean
+; break and continue are whole expressions rather than words inside one, so
+; they are captured by their node.
+(break) @keyword
+(continue) @keyword
 
-; Null
+; Literals
+
+(integer) @number
+(float) @number
+(boolean) @constant.builtin
 (null) @constant.builtin
 
-; Numbers
-(number) @number
-
-; Strings
 (string) @string
+(raw_string) @string
+(escaped_string) @string
+(escape_sequence) @string.escape
 
-; Function definitions
-(function_expression) @function
+; The braces of an interpolation belong to the string, what is between them is
+; ordinary code and is highlighted as such.
+(interpolation
+  "{" @punctuation.special
+  "}" @punctuation.special)
 
-; Built-in function calls
-(call_expression
-  function: (identifier) @function
-  (#match? @function "^(len|println|print|input|string|error|type|int|float|exit|append|new|failed|plugin|pipe|send|recv|close|hex|oct|bin|slice|keys|delete|bytes)$"))
+; Functions
+;
+; A function has no name of its own: it is a value, and its name is whatever
+; it was assigned to.
+(assignment
+  left: (identifier) @function
+  right: (function))
 
-; Regular function calls - highlight the function name
-(call_expression
+(assignment
+  left: (member property: (identifier) @function)
+  right: (function))
+
+(call
   function: (identifier) @function)
 
-; Parameters
-(parameter_list
-  (identifier) @variable.parameter)
+(call
+  function: (member property: (identifier) @function.method))
 
-; Property access - placed BEFORE method calls so method calls can override
-(member_expression
-  property: (identifier) @property)
+; The builtins, which are functions nobody declared.
+((identifier) @function.builtin
+  (#match? @function.builtin "^(len|println|print|input|string|error|type|int|float|exit|append|new|failed|plugin|native|pipe|send|recv|close|hex|oct|bin|slice|keys|delete|bytes)$"))
 
-; Method calls on member expressions - MUST come after property access to override
-(call_expression
-  function: (member_expression
-    property: (identifier) @function))
+(parameters (identifier) @variable.parameter)
 
-; Variables in member expression objects
-(member_expression
-  object: (identifier) @variable)
+; Objects and their fields
 
-; Variables in index expressions
-(index_expression
-  object: (identifier) @variable)
+(member property: (identifier) @property)
+(map_entry key: (identifier) @property)
 
-; Variables as index
-(index_expression
-  index: (identifier) @variable)
-
-; Left side of assignments
-(assignment
-  left: (identifier) @variable)
-
-; Right side of assignments (variables being read)
-(assignment
-  right: (identifier) @variable)
-
-; Variables in binary expressions
-(binary_expression
-  left: (identifier) @variable)
-
-(binary_expression
-  right: (identifier) @variable)
-
-; Variables as arguments to function calls
-(argument_list
-  (identifier) @variable)
-
-; Variables in return statements (direct identifiers)
-(return_statement
-  (identifier) @variable)
+; Everything else that is a name is a variable. It comes last because a
+; capture only wins where nothing more precise matched.
+(identifier) @variable
 
 ; Operators
+
 [
   "="
+  "+="
+  "-="
+  "*="
+  "/="
+  "%="
+  "&="
+  "|="
+  "^="
+  "<<="
+  ">>="
   "+"
   "-"
   "*"
@@ -102,11 +98,18 @@
   "&&"
   "||"
   "!"
+  "&"
+  "|"
+  "^"
+  "~"
+  "<<"
+  ">>"
   "++"
   "--"
 ] @operator
 
 ; Punctuation
+
 [
   "("
   ")"
@@ -120,4 +123,5 @@
   ","
   ":"
   ";"
+  "."
 ] @punctuation.delimiter

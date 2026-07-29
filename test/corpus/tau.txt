@@ -1,0 +1,302 @@
+========================================
+numbers in every base
+========================================
+
+a = 0644
+b = 0x1f
+c = 0b1010
+d = 1_000_000
+e = 1.5e3
+
+---
+
+(source_file
+  (assignment
+    left: (identifier)
+    right: (integer))
+  (assignment
+    left: (identifier)
+    right: (integer))
+  (assignment
+    left: (identifier)
+    right: (integer))
+  (assignment
+    left: (identifier)
+    right: (integer))
+  (assignment
+    left: (identifier)
+    right: (float)))
+
+========================================
+bitwise operators
+========================================
+
+x = (a | b) ^ ~c
+y = a & 0xff
+z = a << 2 >> 1
+
+---
+
+(source_file
+  (assignment
+    left: (identifier)
+    right: (binary_expression
+      left: (parenthesized_expression
+        (binary_expression
+          left: (identifier)
+          right: (identifier)))
+      right: (unary_expression
+        argument: (identifier))))
+  (assignment
+    left: (identifier)
+    right: (binary_expression
+      left: (identifier)
+      right: (integer)))
+  (assignment
+    left: (identifier)
+    right: (binary_expression
+      left: (binary_expression
+        left: (identifier)
+        right: (integer))
+      right: (integer))))
+
+========================================
+compound assignment
+========================================
+
+n += 1
+n <<= 2
+m[i] |= 8
+
+---
+
+(source_file
+  (assignment
+    left: (identifier)
+    right: (integer))
+  (assignment
+    left: (identifier)
+    right: (integer))
+  (assignment
+    left: (index
+      object: (identifier)
+      index: (identifier))
+    right: (integer)))
+
+========================================
+increment on either side
+========================================
+
+++i
+i++
+--j
+j--
+
+---
+
+(source_file
+  (update_expression
+    argument: (identifier))
+  (update_expression
+    argument: (identifier))
+  (update_expression
+    argument: (identifier))
+  (update_expression
+    argument: (identifier)))
+
+========================================
+break and continue
+========================================
+
+for i = 0; i < 10; ++i {
+	if i == 2 { continue }
+	if i == 4 { break }
+}
+
+---
+
+(source_file
+  (for
+    initializer: (assignment
+      left: (identifier)
+      right: (integer))
+    condition: (binary_expression
+      left: (identifier)
+      right: (integer))
+    update: (update_expression
+      argument: (identifier))
+    body: (block
+      (if
+        condition: (binary_expression
+          left: (identifier)
+          right: (integer))
+        consequence: (block
+          (continue)))
+      (if
+        condition: (binary_expression
+          left: (identifier)
+          right: (integer))
+        consequence: (block
+          (break))))))
+
+========================================
+a string with expressions in it
+========================================
+
+println("got {n} of {len(xs)}")
+
+---
+
+(source_file
+  (call
+    function: (identifier)
+    (arguments
+      (string
+        (interpolation
+          (identifier))
+        (interpolation
+          (call
+            function: (identifier)
+            (arguments
+              (identifier))))))))
+
+========================================
+a raw string
+========================================
+
+s = `no \escapes here`
+
+---
+
+(source_file
+  (assignment
+    left: (identifier)
+    right: (raw_string)))
+
+========================================
+import and tau
+========================================
+
+os = import("os")
+tau worker(ch)
+
+---
+
+(source_file
+  (assignment
+    left: (identifier)
+    right: (import
+      (string)))
+  (tau_call
+    (call
+      function: (identifier)
+      (arguments
+        (identifier)))))
+
+========================================
+assignment is an expression
+========================================
+
+if failed(f = os.Open(path)) {
+	return f
+}
+
+---
+
+(source_file
+  (if
+    condition: (call
+      function: (identifier)
+      (arguments
+        (assignment
+          left: (identifier)
+          right: (call
+            function: (member
+              object: (identifier)
+              property: (identifier))
+            (arguments
+              (identifier))))))
+    consequence: (block
+      (return
+        (identifier)))))
+
+========================================
+an object built with closures
+========================================
+
+new = fn(name) {
+	t = new()
+	t.Name = name
+	t.Greet = fn() { println("hi {t.Name}") }
+	return t
+}
+
+---
+
+(source_file
+  (assignment
+    left: (identifier)
+    right: (function
+      (parameters
+        (identifier))
+      body: (block
+        (assignment
+          left: (identifier)
+          right: (call
+            function: (identifier)))
+        (assignment
+          left: (member
+            object: (identifier)
+            property: (identifier))
+          right: (identifier))
+        (assignment
+          left: (member
+            object: (identifier)
+            property: (identifier))
+          right: (function
+            body: (block
+              (call
+                function: (identifier)
+                (arguments
+                  (string
+                    (interpolation
+                      (member
+                        object: (identifier)
+                        property: (identifier)))))))))
+        (return
+          (identifier))))))
+
+========================================
+a for with no condition at all
+========================================
+
+for {
+	break
+}
+
+---
+
+(source_file
+  (for
+    body: (block
+      (break))))
+
+========================================
+if as an expression
+========================================
+
+v = if a > b { a } else { b }
+
+---
+
+(source_file
+  (assignment
+    left: (identifier)
+    right: (if
+      condition: (binary_expression
+        left: (identifier)
+        right: (identifier))
+      consequence: (block
+        (identifier))
+      alternative: (block
+        (identifier)))))

@@ -1,3 +1,29 @@
+// The grammar of tau, following internal/lexer and internal/parser of the
+// language itself: the precedence classes below are the ones of parser.go, in
+// the same order, so that the two can be read side by side.
+//
+// Nearly everything in tau is an expression, assignment and control flow
+// included, which is why there are so few statement rules here: a file is a
+// list of expressions, and a block is a list of expressions between braces.
+
+const PREC = {
+  assignment: 1,
+  logical_or: 2,
+  logical_and: 3,
+  bitwise_or: 4,
+  bitwise_xor: 5,
+  bitwise_and: 6,
+  equality: 7,
+  relational: 8,
+  shift: 9,
+  additive: 10,
+  multiplicative: 11,
+  unary: 12,
+  call: 13,
+  index: 14,
+  member: 15,
+};
+
 module.exports = grammar({
   name: 'tau',
 
@@ -6,252 +32,217 @@ module.exports = grammar({
     $.comment,
   ],
 
+  // A brace opens a block in one place and a map in another, and which one it
+  // is only becomes clear further in.
   conflicts: $ => [
     [$.block, $.map],
   ],
 
+  word: $ => $.identifier,
+
   rules: {
     source_file: $ => repeat($._statement),
 
-    _statement: $ => choice(
-      $.expression_statement,
-      $.assignment,
-      $.return_statement,
-      $.break_statement,
-      $.continue_statement,
-      $.for_statement,
-      $.if_statement,
-      $.tau_statement,
-      $.comment,
-    ),
+    _statement: $ => seq($._expression, optional(choice(';', '\n'))),
 
     comment: $ => token(seq('#', /.*/)),
 
-    // Expressions
-    expression_statement: $ => seq(
-      $._expression,
-      optional('\n'),
-    ),
-
     _expression: $ => choice(
       $.identifier,
-      $.number,
+      $.integer,
+      $.float,
       $.string,
+      $.escaped_string,
+      $.raw_string,
       $.boolean,
       $.null,
-      $.function_expression,
-      $.call_expression,
+      $.function,
+      $.call,
+      $.import,
+      $.tau_call,
+      $.assignment,
       $.binary_expression,
       $.unary_expression,
-      $.index_expression,
-      $.member_expression,
+      $.update_expression,
+      $.index,
+      $.member,
       $.parenthesized_expression,
-      $.array,
+      $.list,
       $.map,
-      $.if_expression,
+      $.if,
+      $.for,
+      $.return,
+      $.break,
+      $.continue,
     ),
 
     // Literals
-    identifier: $ => /[a-zA-Z_][a-zA-Z0-9_]*/,
 
-    number: $ => {
-      const hex = /0[xX][0-9a-fA-F]+/;
-      const binary = /0[bB][01]+/;
-      const octal = /0[oO][0-7]+/;
-      const decimal = /\d+/;
-      const float = /\d+\.\d+/;
-      const exponent = /[eE][+-]?\d+/;
-      return token(choice(
-        hex,
-        binary,
-        octal,
-        seq(float, optional(exponent)),
-        seq(decimal, exponent),
-        decimal,
-      ));
-    },
+    identifier: $ => /[a-zA-Z_][a-zA-Z_0-9]*/,
 
-    string: $ => choice(
-      seq('"', repeat(choice(/[^"\\]/, /\\./)), '"'),
-      seq("'", repeat(choice(/[^'\\]/, /\\./)), "'"),
-      seq("`", /[^`]*/, "`"),
-    ),
+    // The bases the lexer accepts, with underscores allowed inside any of
+    // them: 0644, 0x1f, 0b1010, 1_000_000.
+    integer: $ => token(choice(
+      seq(/0[xX]/, /[0-9a-fA-F_]+/),
+      seq(/0[bB]/, /[01_]+/),
+      seq(/0[oO]/, /[0-7_]+/),
+      /[0-9][0-9_]*/,
+    )),
+
+    float: $ => token(choice(
+      seq(/[0-9][0-9_]*/, '.', /[0-9_]*/, optional(/[eE][+-]?[0-9]+/)),
+      seq(/[0-9][0-9_]*/, /[eE][+-]?[0-9]+/),
+    )),
 
     boolean: $ => choice('true', 'false'),
 
     null: $ => 'null',
 
-    // Function expression
-    function_expression: $ => seq(
-      'fn',
-      '(',
-      optional($.parameter_list),
-      ')',
-      $.block,
+    // A string holds expressions between braces, which is how tau builds its
+    // messages: "got {n} of them".
+    string: $ => seq(
+      '"',
+      repeat(choice(
+        $.escape_sequence,
+        $.interpolation,
+        token.immediate(prec(1, /[^"\\{]+/)),
+      )),
+      '"',
     ),
 
-    parameter_list: $ => seq(
+    // Backticks, where nothing is escaped and nothing is interpolated.
+    raw_string: $ => seq('`', repeat(token.immediate(/[^`]+/)), '`'),
+
+    escape_sequence: $ => token.immediate(seq('\\', /./)),
+
+    // A string inside an interpolation, where the quotes around it belong to
+    // the string it sits in and are written escaped:
+    // "{r.Query[\"a\"]}".
+    escaped_string: $ => token(seq(
+      '\\"',
+      repeat(choice(/[^"\\]/, seq('\\', /[^"]/))),
+      '\\"',
+    )),
+
+    interpolation: $ => seq('{', optional($._expression), '}'),
+
+    // Functions
+
+    function: $ => seq(
+      'fn',
+      '(',
+      optional($.parameters),
+      ')',
+      field('body', $.block),
+    ),
+
+    parameters: $ => seq(
       $.identifier,
       repeat(seq(',', $.identifier)),
       optional(','),
     ),
 
-    block: $ => seq(
-      '{',
-      repeat($._statement),
-      '}',
-    ),
+    block: $ => seq('{', repeat($._statement), '}'),
 
-    // Assignment
-    assignment: $ => prec.right(1, seq(
-      field('left', choice($.identifier, $.index_expression, $.member_expression)),
-      '=',
-      field('right', $._expression),
-    )),
+    // Calls
 
-    // Return statement
-    return_statement: $ => prec.right(seq(
-      'return',
-      optional($._expression),
-    )),
-
-    // Break statement
-    break_statement: $ => prec.left('break'),
-
-    // Continue statement
-    continue_statement: $ => prec.left('continue'),
-
-    // For statement
-    for_statement: $ => seq(
-      'for',
-      choice(
-        seq(
-          optional($.assignment),
-          ';',
-          optional($._expression),
-          ';',
-          optional($._expression),
-        ),
-        seq(
-          '(',
-          optional($.assignment),
-          '=',
-          $._expression,
-          ')',
-          optional($._expression),
-        ),
-        $._expression,
-      ),
-      $.block,
-    ),
-
-    // If statement
-    if_statement: $ => prec.right(seq(
-      'if',
-      $._expression,
-      $.block,
-      optional(seq('else', choice($.if_statement, $.block))),
-    )),
-
-    // Tau statement (concurrent execution)
-    tau_statement: $ => prec.right(seq(
-      'tau',
-      $._expression,
-    )),
-
-    // If expression
-    if_expression: $ => prec.right(10, seq(
-      'if',
-      $._expression,
-      '{',
-      $._expression,
-      '}',
-      'else',
-      '{',
-      $._expression,
-      '}',
-    )),
-
-    // Call expression
-    call_expression: $ => prec(15, seq(
+    call: $ => prec(PREC.call, seq(
       field('function', $._expression),
       '(',
-      optional($.argument_list),
+      optional($.arguments),
       ')',
     )),
 
-    argument_list: $ => seq(
+    arguments: $ => seq(
       $._expression,
       repeat(seq(',', $._expression)),
       optional(','),
     ),
 
-    // Binary expression
-    binary_expression: $ => choice(
-      ...[
-        ['||', 1],
-        ['&&', 2],
-        ['==', 3],
-        ['!=', 3],
-        ['<', 4],
-        ['<=', 4],
-        ['>', 4],
-        ['>=', 4],
-        ['+', 5],
-        ['-', 5],
-        ['*', 6],
-        ['/', 6],
-        ['%', 6],
-      ].map(([operator, precedence]) =>
+    // import is a keyword and not a function, so that a module can be found
+    // before the program runs.
+    import: $ => prec(PREC.call, seq('import', '(', $._expression, ')')),
+
+    // tau runs what follows in a routine of its own, the way go does.
+    tau_call: $ => prec.right(seq('tau', $._expression)),
+
+    // Assignment is an expression: the value it stores is the value it gives
+    // back, which is what makes `if failed(x = f())` read the way it looks.
+    assignment: $ => prec.right(PREC.assignment, seq(
+      field('left', $._expression),
+      field('operator', choice(
+        '=', '+=', '-=', '*=', '/=', '%=', '&=', '|=', '^=', '<<=', '>>=',
+      )),
+      field('right', $._expression),
+    )),
+
+    binary_expression: $ => {
+      const operators = [
+        ['||', PREC.logical_or],
+        ['&&', PREC.logical_and],
+        ['|', PREC.bitwise_or],
+        ['^', PREC.bitwise_xor],
+        ['&', PREC.bitwise_and],
+        ['==', PREC.equality],
+        ['!=', PREC.equality],
+        ['<', PREC.relational],
+        ['<=', PREC.relational],
+        ['>', PREC.relational],
+        ['>=', PREC.relational],
+        ['<<', PREC.shift],
+        ['>>', PREC.shift],
+        ['+', PREC.additive],
+        ['-', PREC.additive],
+        ['*', PREC.multiplicative],
+        ['/', PREC.multiplicative],
+        ['%', PREC.multiplicative],
+      ];
+
+      return choice(...operators.map(([operator, precedence]) =>
         prec.left(precedence, seq(
           field('left', $._expression),
           field('operator', operator),
           field('right', $._expression),
         ))
-      ),
-    ),
+      ));
+    },
 
-    // Unary expression
-    unary_expression: $ => prec(14, seq(
-      field('operator', choice('!', '-', '++', '--')),
+    unary_expression: $ => prec.right(PREC.unary, seq(
+      field('operator', choice('-', '!', '~')),
       field('argument', $._expression),
     )),
 
-    // Index expression
-    index_expression: $ => prec(16, seq(
+    // Both ++i and i++ parse: the parser of the language registers ++ and --
+    // on either side.
+    update_expression: $ => choice(
+      prec.right(PREC.unary, seq(
+        field('operator', choice('++', '--')),
+        field('argument', $._expression),
+      )),
+      prec.left(PREC.unary, seq(
+        field('argument', $._expression),
+        field('operator', choice('++', '--')),
+      )),
+    ),
+
+    index: $ => prec(PREC.index, seq(
       field('object', $._expression),
       '[',
       field('index', $._expression),
       ']',
     )),
 
-    // Member expression
-    member_expression: $ => prec(16, seq(
+    member: $ => prec(PREC.member, seq(
       field('object', $._expression),
       '.',
       field('property', $.identifier),
     )),
 
-    // Parenthesized expression
-    parenthesized_expression: $ => seq(
-      '(',
-      $._expression,
-      ')',
-    ),
+    parenthesized_expression: $ => seq('(', $._expression, ')'),
 
-    // Array
-    array: $ => seq(
-      '[',
-      optional($.argument_list),
-      ']',
-    ),
+    list: $ => seq('[', optional($.arguments), ']'),
 
-    // Map
-    map: $ => seq(
-      '{',
-      optional($.map_entries),
-      '}',
-    ),
+    map: $ => seq('{', optional($.map_entries), '}'),
 
     map_entries: $ => seq(
       $.map_entry,
@@ -260,9 +251,40 @@ module.exports = grammar({
     ),
 
     map_entry: $ => seq(
-      choice($.string, $.identifier),
+      field('key', $._expression),
       ':',
-      $._expression,
+      field('value', $._expression),
     ),
+
+    // Control flow, all of it expressions: an if gives back the value of the
+    // branch that ran.
+    if: $ => prec.right(seq(
+      'if',
+      field('condition', $._expression),
+      field('consequence', $.block),
+      optional(seq('else', field('alternative', choice($.if, $.block)))),
+    )),
+
+    // Three shapes: nothing at all, one condition, or the three parts.
+    for: $ => seq(
+      'for',
+      optional(choice(
+        seq(
+          field('initializer', optional($._expression)),
+          ';',
+          field('condition', optional($._expression)),
+          ';',
+          field('update', optional($._expression)),
+        ),
+        field('condition', $._expression),
+      )),
+      field('body', $.block),
+    ),
+
+    return: $ => prec.right(seq('return', optional($._expression))),
+
+    break: $ => 'break',
+
+    continue: $ => 'continue',
   }
 });
